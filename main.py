@@ -1,6 +1,15 @@
 import pygame
 import sys
 import ctypes
+import os
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 class Singleton:
     def create_mutex(mutex_name):
@@ -30,7 +39,7 @@ def render():
     size = (200, 200)
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption('Multi Roblox')
-    image = pygame.image.load('mr.png')
+    image = pygame.image.load(resource_path('mr.png'))
     running = True
     while running:
         for event in pygame.event.get():
@@ -49,4 +58,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
